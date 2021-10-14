@@ -3,8 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ExerciseInfo from '../../Models/ExerciseInfo';
-import ExerciseCard  from '../ExerciseCard';
+import ExerciseCard  from '../ExerciseCard/ExerciseCard';
 import { Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import './Workout.css';
 
 export default function Workout(props) {
@@ -40,21 +42,25 @@ export default function Workout(props) {
     );
 
     return (
-        <div>
-            <Button 
-                variant='contained'
-                onClick={setButton1}
-            >
-                Day 1
-            </Button>
-            <Button 
-                variant='contained'
-                onClick={setButton2}
-            >
-                Day 2
-            </Button>
+        <Box className="WorkoutPageContainer" mt={5}>
+            <Stack spacing={2} direction="row" justifyContent="center" alignItems="center" flex="1" className="DayButtonStack">
+                <Button 
+                    variant='contained'
+                    onClick={setButton1}
+                    className="DayButton"
+                >
+                    Day 1
+                </Button>
+                <Button 
+                    variant='contained'
+                    onClick={setButton2}
+                    className="DayButton"
+                >
+                    Day 2
+                </Button>
+            </Stack>
             {exerciseCards}
-        </div>
+        </Box>
     )
 
     function setButton1() {

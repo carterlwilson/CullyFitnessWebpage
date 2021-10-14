@@ -14,6 +14,8 @@ import { useState, useEffect } from 'react';
 import Exercise from '../../Models/Exercise';
 import Select from 'react-select'
 import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 const firebaseApp = initializeApp({
   apiKey: 'AIzaSyBoQT4L3shuLfXGgQeQKR6jv2V0zA-Xnk0',
@@ -67,15 +69,19 @@ function NameSelect() {
   return (
     <div>
     <nav>
-        <div>
+      <Box m={5}>
         <Select options={clientSelectOptions} onChange={handleSelect} placeholder='select name'/>
-        <Button 
-            variant='outlined'
-            onClick={handleSubmit}
-        >
-            Submit
-        </Button>
-        </div>
+        <Box m={5}>
+          <Stack justifyContent="center" alignItems="center">
+            <Button 
+                variant='contained'
+                onClick={handleSubmit}
+            >
+                Submit
+            </Button>
+          </Stack>
+        </Box>
+      </Box>
     </nav>
     </div>
   );

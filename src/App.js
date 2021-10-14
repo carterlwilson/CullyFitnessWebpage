@@ -3,6 +3,8 @@ import './App.css';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import Client from './Models/Client';
+import Helmet from 'react-helmet';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +25,7 @@ function App() {
 
   return (
     <Router>
+      <Helmet bodyAttributes={{style: 'background-color : lightgray'}}/>
       <div>
         <Switch>
           <Route

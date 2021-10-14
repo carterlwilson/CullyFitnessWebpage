@@ -1,10 +1,11 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import './ExerciseCard.css';
 
 export default function ExerciseCard(props) {
     return (
-        <Card>
+        <Card className="ExerciseCard">
             <CardContent>
             <Typography variant="body1" gutterBottom>
                         Exercise: {props.name}
