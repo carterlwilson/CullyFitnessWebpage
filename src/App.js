@@ -20,6 +20,7 @@ import Exercise from './Models/Exercise';
 import Select from 'react-select'
 import { Button } from '@mui/material';
 import NameSelect from './Components/NameSelect/NameSelect';
+import AddClientPage from './Pages/AddClientPage';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
       <Helmet bodyAttributes={{style: 'background-color : lightgray'}}/>
       <div>
         <Switch>
+          <Route
+            path='/addclient'>
+              <AddClientPage />
+          </Route>   
           <Route
             path='/workout'
             render={(props) => (
