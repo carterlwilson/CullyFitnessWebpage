@@ -7,7 +7,10 @@ export default function ExerciseCard(props) {
     return (
         <Card className="ExerciseCard">
             <CardContent>
-            <Typography variant="body1" gutterBottom>
+                    <Typography variant="body1" gutterBottom>
+                        Max: {props.max}
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
                         Exercise: {props.name}
                     </Typography>
                     <Typography variant="body1" gutterBottom>
@@ -17,7 +20,7 @@ export default function ExerciseCard(props) {
                         Reps: {props.reps}
                     </Typography>
                     <Typography variant="body1" gutterBottom>
-                        Weight: {props.weight}
+                        Weight: {props.weight} ({props.multiplier * 100}% of {props.max})
                     </Typography>
             </CardContent>
         </Card>

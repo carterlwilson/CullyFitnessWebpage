@@ -38,11 +38,16 @@ export default function Workout(props) {
     useEffect(() => {}, [exercises]);
 
     const exerciseCards = exercises.map((exercise) =>
-        <ExerciseCard name={exercise.name} sets={exercise.sets} reps={exercise.reps} weight={exercise.weight}/>
+        <ExerciseCard name={exercise.name} sets={exercise.sets} reps={exercise.reps} weight={exercise.weight} max={exercise.max} multiplier={exercise.multiplier}/>
     );
 
     return (
         <Box className="WorkoutPageContainer" mt={5}>
+            <Box ml={1}>
+                <Typography variant="h5">
+                    Block: {iterations.Block}, Week: {iterations.Week}
+                </Typography>
+            </Box>
             <Stack spacing={2} direction="row" justifyContent="center" alignItems="center" flex="1" className="DayButtonStack">
                 <Button 
                     variant='contained'
@@ -120,7 +125,7 @@ export default function Workout(props) {
             let max = client.maxes[name];
             let weight = Math.round(weightMultiplier * max);
 
-            let newExercise = new ExerciseInfo(name, sets, reps, weight);
+            let newExercise = new ExerciseInfo(name, sets, reps, weight, max, weightMultiplier);
 
             exerciseList.push(newExercise);
         })
