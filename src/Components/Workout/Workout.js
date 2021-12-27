@@ -122,7 +122,7 @@ export default function Workout(props) {
             let reps = multiplier.Multipliers[block-1].Weeks[week-1].Reps;
             let weightMultiplier = multiplier.Multipliers[block-1].Weeks[week-1].Multiplier;
 
-            let max = client.maxes[name];
+            let max = client.maxes.find((max) => max.name === name).weight;
             let weight = Math.round(weightMultiplier * max);
 
             let newExercise = new ExerciseInfo(name, sets, reps, weight, max, weightMultiplier);
