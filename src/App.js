@@ -20,6 +20,7 @@ import Exercise from './Models/Exercise';
 import Select from 'react-select'
 import { Button } from '@mui/material';
 import NameSelect from './Components/NameSelect/NameSelect';
+import ImportClients from './Pages/ImportClients';
 
 function App() {
 
@@ -34,8 +35,14 @@ function App() {
               <Workout {...props}/>
             )}
           />
-          <Route path="/">
+          <Route exact path="/">
             <NameSelect />
+          </Route>
+          <Route
+            path="/importClients"
+            render={(props) => (
+                <ImportClients {...props}/>
+              )}>
           </Route>
         </Switch>
       </div>
