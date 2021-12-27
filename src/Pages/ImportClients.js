@@ -6,7 +6,15 @@ import { styled } from '@mui/material/styles';
 import Papa from 'papaparse';
 import Client from '../Models/Client';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, writeBatch } from "firebase/firestore";
+
+const firebaseApp = initializeApp({
+    apiKey: 'AIzaSyBoQT4L3shuLfXGgQeQKR6jv2V0zA-Xnk0',
+    authDomain: 'cullyfitness.firebaseapp.com',
+    projectId: 'cullyfitness'
+  });
+
+const db = getFirestore();
 
 const Input = styled('input')({
     display: 'none',
@@ -41,7 +49,7 @@ export default function ImportClients() {
         return new Client(firstName, lastName, tempMaxes);
     }
 
-    const addClientsToDb = (input) => {
+    const addClientsToDb = async (input) => {
         let clients = [];
         let csvArray = input.data
 
@@ -54,6 +62,15 @@ export default function ImportClients() {
             clients.push(newClient);
         });
 
+        const batch = writeBatch(db);
+        clients.forEach((client) => {
+            let name = client.firstName + client.lastName;
+            const docRef = doc(db, "Clients", name);
+            batch.set(docRef, Object.assign({}, client));
+        })
+
+        await batch.commit()
+ 
         console.log(clients);
     }
 

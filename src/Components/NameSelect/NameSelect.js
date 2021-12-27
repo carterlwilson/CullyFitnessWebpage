@@ -91,9 +91,10 @@ function NameSelect() {
       getDocs(collection(db, "Clients")).then((clients) => {
         const tempClients = []
         clients.forEach((doc) => {
-          let newClient = new Client(doc.data().FirstName, doc.data().LastName, doc.data().Maxes);
+          let newClient = new Client(doc.data().firstName, doc.data().lastName, doc.data().maxes);
           tempClients.push(newClient);
         });
+
         setClientCollection(tempClients);
       });
 

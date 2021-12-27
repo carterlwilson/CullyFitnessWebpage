@@ -24,6 +24,12 @@ import ImportClients from './Pages/ImportClients';
 
 function App() {
 
+  const firebaseApp = initializeApp({
+    apiKey: 'AIzaSyBoQT4L3shuLfXGgQeQKR6jv2V0zA-Xnk0',
+    authDomain: 'cullyfitness.firebaseapp.com',
+    projectId: 'cullyfitness'
+  });
+
   return (
     <Router>
       <Helmet bodyAttributes={{style: 'background-color : lightgray'}}/>
