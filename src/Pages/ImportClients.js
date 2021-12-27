@@ -7,6 +7,10 @@ import Papa from 'papaparse';
 import Client from '../Models/Client';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, doc, writeBatch } from "firebase/firestore";
+import Snackbar from '@mui/material/Snackbar';
+import { ThemeProvider } from '@emotion/react';
+import csvscreenshot from '../csvscreenshot.png';
+
 
 const firebaseApp = initializeApp({
     apiKey: 'AIzaSyBoQT4L3shuLfXGgQeQKR6jv2V0zA-Xnk0',
@@ -23,8 +27,8 @@ const Input = styled('input')({
 export default function ImportClients() {
 
     const [csvParseResults, setCsvParseResults] = useState();
-
     const [clientFile, setClientFile] = useState();
+    const [successToast, setSuccessToast] = useState(false);
 
     const parseCsv = (file) => {
         let data = Papa.parse(file);
@@ -36,6 +40,10 @@ export default function ImportClients() {
         //setClientFile(file);
         parseCsv(file);
     }
+
+    const handleClose = (event, reason) => {
+        setSuccessToast(false);
+    };
 
     const buidClient = (firstName, lastName, exerciseNames, maxes) => {
         let tempMaxes = [];
@@ -69,9 +77,7 @@ export default function ImportClients() {
             batch.set(docRef, Object.assign({}, client));
         })
 
-        await batch.commit()
- 
-        console.log(clients);
+        batch.commit().then((success) => setSuccessToast(true)); 
     }
 
     const onSubmit = (e) => {
@@ -93,7 +99,14 @@ export default function ImportClients() {
 
     return (
         <Box>
-            <Typography>This is the import page</Typography>
+            <Snackbar
+            open={successToast}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Successfully Imported Clidents"
+            />
+            <Typography>This is the import page. You can import a client spreadsheet here as a csv file. Don't know how to get a csv file? You can use the screenshot below for any google docs file.</Typography>
+            <img src={csvscreenshot} alt="screenshot" width="500" />
             <form id="myForm" onSubmit={onSubmit}>
                 <input type="file" id="csvFile" accept=".csv" />
                 <br />
