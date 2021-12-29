@@ -10,6 +10,7 @@ import { getFirestore, collection, getDocs, doc, writeBatch } from "firebase/fir
 import Snackbar from '@mui/material/Snackbar';
 import { ThemeProvider } from '@emotion/react';
 import csvscreenshot from '../csvscreenshot.png';
+import csvFormatScreenshot from '../csvFormatScreenshot.png';
 
 
 const firebaseApp = initializeApp({
@@ -107,6 +108,8 @@ export default function ImportClients() {
             />
             <Typography>This is the import page. You can import a client spreadsheet here as a csv file. Don't know how to get a csv file? You can use the screenshot below for any google docs file.</Typography>
             <img src={csvscreenshot} alt="screenshot" width="500" />
+            <Typography>The spreadsheet needs to be formatted like the screenshot below:</Typography>
+            <img src={csvFormatScreenshot} alt="screenshot" width="500" />
             <form id="myForm" onSubmit={onSubmit}>
                 <input type="file" id="csvFile" accept=".csv" />
                 <br />
